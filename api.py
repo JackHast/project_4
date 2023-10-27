@@ -7,7 +7,7 @@ with open("config.json", "r") as file:
     config = json.load(file)
 apikey = config["ALPHAVANTAGE_API_KEY"]
 
-def get_news_sentiment(tickers= None, topics= None, time_from= None, time_to= None, sort= "LATEST", limit=None, apikey="apikey"):
+def get_news_headlines(tickers= None, topics= None, time_from= None, time_to= None, sort= "LATEST", limit=None, apikey="apikey"):
     base_url = 'https://www.alphavantage.co/query?function=NEWS_SENTIMENT'
     
     # Append tickers to the URL if provided
@@ -36,8 +36,8 @@ def get_news_sentiment(tickers= None, topics= None, time_from= None, time_to= No
     
     return data
 
-# Example usage
-new_headlines_data = get_news_sentiment(topics="technology", time_from="20231027T0000", limit=1)
+# Fetch some specific data 
+new_headlines_data = get_news_headlines(topics="technology", time_from="20231027T0000", limit=1)
 
 df = pd.DataFrame(new_headlines_data["feed"])
 
