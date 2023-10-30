@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Market News Results</title>
+</head>
+<body>
+    <h1>Market News</h1>
+    <a href="/">Back to Home</a> <!-- Link back to the homepage -->
+    {% for item in results %} 
+    <div>
+        <h2>{{ item.headline }}</h2>
+        <p><strong>Source:</strong> {{ item.source }}</p>
+        <p><strong>Sentiment:</strong> {{ item.sentiment }} (Score: {{ item.score|round(2) }})</p>
+        <p><a href="{{ item.url }}" target="_blank">Read more</a></p>
+    </div>
+    {% else %}
+        <p>No news items found.</p>
+    {% endfor %}
+    
+</body>
+</html>

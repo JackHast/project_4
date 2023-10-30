@@ -12,9 +12,13 @@ api_key = config["ALPHAVANTAGE_API_KEY"]
 def get_new_headlines(tickers=None, topics=None, time_from=None, time_to=None, sort=None, limit=None):
     base_url = 'https://www.alphavantage.co/query?function=NEWS_SENTIMENT'
     
-    # Append tickers to the URL if provided
+   # Check if tickers is a single string or a list, and format accordingly
     if tickers:
-        base_url += f"&tickers={','.join(tickers)}"
+        if isinstance(tickers, list):
+            ticker_string = ','.join(tickers)
+        else:
+            ticker_string = tickers
+        base_url += f"&tickers={ticker_string}"
     
     # Append topics to the URL if provided
     if topics:
@@ -44,15 +48,15 @@ def get_new_headlines(tickers=None, topics=None, time_from=None, time_to=None, s
     return data
 
 # Fetch some specific data 
-new_headlines_data = get_new_headlines(topics="technology", limit=5)
+new_headlines_data = get_new_headlines(tickers="AAPL", limit=5)
 
-# print(new_headlines_data)
+print(new_headlines_data) 
 
-df = pd.DataFrame(new_headlines_data["feed"])
+# df = pd.DataFrame(new_headlines_data["feed"])
 
-csv_filename = "news_data.csv"
-df.to_csv(csv_filename, index=False)
-print(f"Data saved to {csv_filename}")
+# csv_filename = "news_data.csv"
+# df.to_csv(csv_filename, index=False)
+# print(f"Data saved to {csv_filename}")
 
 
 

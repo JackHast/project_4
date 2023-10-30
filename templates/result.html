@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Result</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analysis Result</h1>
+    
+    <h2> {{ticker}} Overall Sentiment</h2>
+    <p><strong>Sentiment:</strong> {{ overall_sentiment }}</p>
+    <p><strong>Score:</strong> {{ "%.2f" | format(overall_score) }}</p>
+
+    <a href="/">Try another analysis</a>
+
+    <h2>Headline Sentiments</h2>
+    <table>
+        <tr>
+            <th>Headline</th>
+            <th>Sentiment</th>
+            <th>Score</th>
+            <th>Click to Read</th> 
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.headline }}</td> 
+            <td>{{ result.sentiment }}</td>
+            <td>{{ "%.2f" | format(result.score) }}</td>
+            <td><a href="{{ result.url }}" target="_blank">Link</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    
+</body>
+</html>
