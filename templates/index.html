@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Financial Sentiment Analysis</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
-    <h1>Financial Sentiment Analysis Tool</h1>
-    <form action="/analyze" method="post">
+    <h2>Financial Sentiment Analysis Tool</h2>
+    <form action="/analysis" method="post">
         <label for="ticker">Ticker Code:</label><br>
         <input type="text" id="ticker" name="ticker"><br>
 
@@ -14,8 +15,8 @@
 
         <label for="to_date">To Date:</label><br>
         <input type="date" id="to_date" name="to_date"><br>
-
-        <input type="submit" value="Analyze">
+        <br><br>
+        <input type="submit" value="Get Sentiment Analysis">
     </form>
     <br><br>
     

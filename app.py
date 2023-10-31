@@ -8,15 +8,14 @@ import json
 import numpy as np
 
 # Load the pre-trained sentiment analysis model
-model = load_model('first_model.h5')
+model = load_model('latest_model.h5') 
 
-# Load the tokenizer used for preprocessing text data
-# This tokenizer converts words to integers based on a frequency rank
-with open('tokenizer.json') as f:
+# Load the same tokenizer used for preprocessing text data / tokenizer converts words to integers based on a frequency rank
+with open('new_tokenizer.json') as f:
     data = json.load(f)
     tokenizer = tokenizer_from_json(data)
 
-# Setup Finnhub API client to fetch company news (Finnhub provides financial data and news)
+# Setup Finnhub API client to fetch company news
 with open("config.json", "r") as file:
     config = json.load(file)
 finnhub_client = finnhub.Client(api_key=config["FINNHUB_API_KEY"])
@@ -30,20 +29,25 @@ def home():
     # Render the home page template on request
     return render_template('index.html')
 
-# Define route for analyzing news sentiment
-@app.route('/analyze', methods=['POST'])
-def analyze():
-        # Retrieve user input from form submission
+# Define route for analysing news sentiment
+@app.route('/analysis', methods=['POST'])
+def analysis():
+        # Retrieve user input from web form submission
         ticker = request.form['ticker']
         from_date = request.form['from_date']
         to_date = request.form['to_date']
+
+        # Check if ticker field is empty
+        if not ticker.strip():
+        # Return an error message and a link to go back
+            return render_template('no_data.html', message="Please enter a ticker symbol.")
 
         # Fetch news data for the given company ticker and date range
         news_data = finnhub_client.company_news(ticker, _from=from_date, to=to_date)
 
         # Return error message if no news data is found
         if not news_data:
-            return "No news data available for the selected ticker and date range."
+            return render_template('no_data.html', message="No news data available for the selected ticker and date range.")
 
         # Extract headline and URL information from news data
         headlines_data = [{"headline": news['headline'], "url": news['url']} for news in news_data]
@@ -53,6 +57,7 @@ def analyze():
 
         # Use the model to predict sentiments of the news headlines
         predictions = model.predict(processed_data)
+        
         interpreted_results = [interpret_prediction(pred) for pred in predictions]
 
         # Combine headlines, sentiments, scores, and URLs for rendering in the template
@@ -63,7 +68,7 @@ def analyze():
         ]
 
         # Calculate overall sentiment and score for all headlines
-        overall_score = sum([res[1] for res in interpreted_results]) / len(interpreted_results)
+        overall_score = sum([results[1] for results in interpreted_results]) / len(interpreted_results)
         overall_sentiment = "Positive" if overall_score > 0.5 else "Negative"
 
         # Sort results by sentiment
@@ -81,7 +86,7 @@ def market_news():
     if request.method == 'POST':
         category = request.form.get('category')
 
-        print(f"The category is: {category}")
+        # print(f"The category is: {category}") - debug
 
         # Fetch market news using Finnhub API
         try:
@@ -93,7 +98,7 @@ def market_news():
 
         # Check if news_data is not empty
         if not news_data:
-            return "No market news data available for the selected category."
+            return render_template('no_data.html', message="No market news data available for the selected category.")
 
         # Extract headline, source and URL information from news data
         market_data = [{"headline": news['headline'], "source": news['source'], "url": news['url']} for news in news_data]
@@ -119,17 +124,38 @@ def market_news():
         return render_template('market_news_form.html')
 
                                
-
 # Function to preprocess retrieved API news headlines for the model
 def preprocess_news_data(news_data):
     # Extract headlines from the news data
     headlines = [news['headline'] for news in news_data]
-
-    # Convert headlines to sequences of integers using the tokenizer
-    sequences = tokenizer.texts_to_sequences(headlines)
-
+    
+    # Define non-alphanumeric characters to be removed
+    non_alphanum = [',','.','/','"',':',';','!','@','#','$','%',"'","*","(",")","&","--"]
+    
+    # Process each headline
+    processed_headlines = []
+    for headline in headlines:
+        # Remove non-alphanumeric characters
+        for char in non_alphanum:
+            headline = headline.replace(char, "")
+        
+        # Replace certain strings
+        headline = headline.replace(" s ", " ")
+        headline = headline.replace(" '", "'")
+        headline = headline.replace("  ", " ")
+        headline = headline.replace("   ", " ")
+        
+        # Convert to lower case
+        headline = headline.lower()
+        
+        # Append the processed headline to the list
+        processed_headlines.append(headline)
+    
+    # Convert processed headlines to sequences of integers using the tokenizer
+    sequences = tokenizer.texts_to_sequences(processed_headlines)
+    
     # Pad sequences to ensure uniform input size for the model
-    padded = pad_sequences(sequences, maxlen=100, padding='post', truncating='post')
+    padded = pad_sequences(sequences, maxlen=60, padding='post', truncating='post')
     return padded
 
 # Function to interpret the model's prediction

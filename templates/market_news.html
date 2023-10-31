@@ -8,7 +8,7 @@
     <a href="/">Back to Home</a> <!-- Link back to the homepage -->
     {% for item in results %} 
     <div>
-        <h2>{{ item.headline }}</h2>
+        <h3>{{ item.headline }}</h3>
         <p><strong>Source:</strong> {{ item.source }}</p>
         <p><strong>Sentiment:</strong> {{ item.sentiment }} (Score: {{ item.score|round(2) }})</p>
         <p><a href="{{ item.url }}" target="_blank">Read more</a></p>

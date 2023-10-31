@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
+
+h1, h2, h3, label, select, select option, input[type="text"], input[type="date"], input[type="submit"] {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+h1 {
+    font-size: 32px; 
+    color: #333; 
+}
+
+h2 {
+    font-size: 28px; 
+    color: #444; 
+}
+
+h3 {
+    font-size: 24px; 
+    color: #555; 
+}
+
+label {
+    font-size: 12px; 
+    color: #666; 
+}
+
+select, select option {
+    font-size: 10px; 
+    color: #666; 
+}
+
+input[type="text"], input[type="date"] {
+    font-size: 10px; 
+    padding: 5px; 
+    color: #000; 
+    border: 1px solid #ccc; 
+}
+
+input[type="submit"] {
+    font-size: 16px; 
+    padding: 6px 8px; 
+    background-color: #4CAF50; 
+    color: white; 
+    border: none; /* No border */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049; /* Slightly darker shade for hover effect */
+}
