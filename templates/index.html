@@ -7,32 +7,41 @@
 <body>
     <h2>Financial Sentiment Analysis Tool</h2>
     <form action="/analysis" method="post">
-        <label for="ticker">Ticker Code:</label><br>
-        <input type="text" id="ticker" name="ticker"><br>
-
-        <label for="from_date">From Date:</label><br>
-        <input type="date" id="from_date" name="from_date"><br>
-
-        <label for="to_date">To Date:</label><br>
-        <input type="date" id="to_date" name="to_date"><br>
-        <br><br>
-        <input type="submit" value="Get Sentiment Analysis">
+        <div class="form-group">
+            <label for="ticker">Ticker Code:</label> 
+            <input type="text" id="ticker" name="ticker" placeholder="eg. 'AAPL'">
+        </div>
+    
+        <div class="form-group">
+            <label for="from_date">From Date:</label>
+            <input type="date" id="from_date" name="from_date">
+        </div>
+    
+        <div class="form-group">
+            <label for="to_date">To Date:</label>
+            <input type="date" id="to_date" name="to_date">
+        </div>
+    
+        <input type="submit" class="submit-btn" value="Get Sentiment">
     </form>
+    
     <br><br>
     
-    <!-- Market News Section -->
-    <h2>Market News</h2>
-    <form action="/market_news" method="post">
-        <label for="category">News Category:</label>
+    <hr class="divider">
+<!-- Market News Section -->
+<h3>Market News</h3>
+<form action="/market_news" method="post">
+    <div class="input-group">
+        <label for="category">Select Category:</label>
         <select name="category" id="category">
             <option value="general">General</option>
             <option value="forex">Forex</option>
             <option value="crypto">Crypto</option>
             <option value="merger">Merger</option>
         </select>
-        <br><br>
-        
-        <input type="submit" value="Analyse News">
-    </form>
+    </div><br>
+    
+    <input type="submit" value="Analyse News">
+</form>
 </body>
 </html>

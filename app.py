@@ -1,16 +1,18 @@
 # Import necessary libraries
-from flask import Flask, render_template, request
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.preprocessing.text import tokenizer_from_json
 import finnhub
 import json
 import numpy as np
+import csv
+from flask import Flask, render_template, request, jsonify
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.preprocessing.text import tokenizer_from_json
+from db_app import Correction, Session
 
 # Load the pre-trained sentiment analysis model
-model = load_model('latest_model.h5') 
+model = load_model('positive_negative_model.h5') 
 
-# Load the same tokenizer used for preprocessing text data / tokenizer converts words to integers based on a frequency rank
+# Load the same tokenizer used for preprocessing text data / tokenizer will convert words to integers based on a frequency rank
 with open('new_tokenizer.json') as f:
     data = json.load(f)
     tokenizer = tokenizer_from_json(data)
@@ -37,21 +39,28 @@ def analysis():
         from_date = request.form['from_date']
         to_date = request.form['to_date']
 
-        # Check if ticker field is empty
+        # Check if ticker field is empty / error handling 
         if not ticker.strip():
         # Return an error message and a link to go back
             return render_template('no_data.html', message="Please enter a ticker symbol.")
 
+        # Check if date field is empty / error handling 
+        if not from_date.strip() or not to_date.strip():
+        # Return an error message and a link to go back
+            return render_template('no_data.html', message="Please enter a date range.")
+
+
         # Fetch news data for the given company ticker and date range
         news_data = finnhub_client.company_news(ticker, _from=from_date, to=to_date)
-
+        print(f"Number of articles returned: {len(news_data)}")
+        
         # Return error message if no news data is found
         if not news_data:
             return render_template('no_data.html', message="No news data available for the selected ticker and date range.")
 
         # Extract headline and URL information from news data
         headlines_data = [{"headline": news['headline'], "url": news['url']} for news in news_data]
-
+        
         # Preprocess news data for prediction
         processed_data = preprocess_news_data(news_data)
 
@@ -71,15 +80,15 @@ def analysis():
         overall_score = sum([results[1] for results in interpreted_results]) / len(interpreted_results)
         overall_sentiment = "Positive" if overall_score > 0.5 else "Negative"
 
-        # Sort results by sentiment
-        sorted_results = sorted(results_data, key=lambda x: x['sentiment'], reverse=True)
+        # # Sort results by score
+        # sorted_results = sorted(results_data, key=lambda x: x['score'], reverse=True)
 
         return render_template('result.html', 
                             ticker=ticker,
-                            results=sorted_results,
+                            results=results_data,
                             overall_sentiment=overall_sentiment, 
-                            overall_score=overall_score)
-
+                            overall_score=overall_score,
+                            news_data=news_data)
 
 @app.route('/market_news', methods=['GET', 'POST'])
 def market_news():
@@ -117,11 +126,12 @@ def market_news():
             for data, result in zip(market_data, interpreted_results)
         ]
 
-        return render_template('market_news.html', results=market_results_data)
+        return render_template('market_news.html', results=market_results_data, category=category.capitalize())
 
     # GET request: Show the form
     else:
-        return render_template('market_news_form.html')
+        # Render the index.html template for the GET request
+        return render_template('index.html')
 
                                
 # Function to preprocess retrieved API news headlines for the model
@@ -165,6 +175,29 @@ def interpret_prediction(prediction):
     # Determine sentiment as 'Positive' or 'Negative' based on the score
     sentiment = "Positive" if score > 0.5 else "Negative"
     return sentiment, score
+
+
+@app.route('/report', methods=['POST'])
+def report():
+    try:
+        data = request.get_json()
+        headline = data['headline']
+        reported_sentiment = data['sentiment']
+
+        if reported_sentiment == "Positive":
+            correct_sentiment = "Negative"
+        else:
+            correct_sentiment = "Positive"
+
+        session = Session()  # Create a new session for each request
+        correction = Correction(sentence=headline, correct_sentiment=correct_sentiment)
+        session.add(correction)
+        session.commit()
+        return jsonify({"message": "Correction successfully added to Database"})
+    finally:
+        session.close()
+
+        
 
 # Run the Flask application when the script is executed directly
 if __name__ == '__main__':
