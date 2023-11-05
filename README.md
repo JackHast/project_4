@@ -7,4 +7,10 @@
 
 ## Contents of Repository
 
+## Cleaning and EDA
+
+## Creation of the Neural Network
+
+## Creation of the Webpage
+
 ## Instructions
