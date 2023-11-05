@@ -1,6 +1,6 @@
 # Financial Sentiment Analysis 
 
-### created by Andrew McLaughlin and Jack Hastings
+#### Created by Andrew McLaughlin and Jack Hastings
 
 ## Introduction 
 
