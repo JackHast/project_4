@@ -9,10 +9,10 @@
 
 ## Cleaning and EDA
 
-## Creation of the Neural Network
+## The Neural Network
 
-## Creation of the Webpage
+## The Webpage
 
-## Instructions
+## Instructions on Running the Webpage
 
 ## Acknowledgements 
