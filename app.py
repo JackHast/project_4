@@ -13,7 +13,7 @@ from db_app import Correction, Session
 model = load_model('positive_negative_model.h5') 
 
 # Load the same tokenizer used for preprocessing text data / tokenizer will convert words to integers based on a frequency rank
-with open('new_tokenizer.json') as f:
+with open('tokenizer.json') as f:
     data = json.load(f)
     tokenizer = tokenizer_from_json(data)
 
