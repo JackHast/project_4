@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Market News Results</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ category }} Market News</h1>
+    <a href="/" class="btn btn-primary">Select Another Market</a><br>
+    <br>
+    {% if results %}
+    <table>
+        <tr>
+            <th>Headline</th>
+            <th>Source</th>
+            <th>Sentiment</th>
+            <th>Score</th>
+            <th>Read More</th>
+            <th>Report Incorrect Sentiment</th> 
+        </tr>
+        {% for item in results %}
+        <tr>
+            <td>{{ item.headline }}</td>
+            <td>{{ item.source }}</td>
+            <td class="{{ 'positive' if item.sentiment == 'Positive' else 'negative' }}">{{ item.sentiment }}</td>
+            <td>{{ "%.2f" | format(item.score) }}</td>
+            <td><a href="{{ item.url }}" target="_blank">Link</a></td>
+            <td>
+                <!-- New report button. The data attributes store the headline and sentiment for use in JS -->
+                <button class="report-btn" data-headline="{{ item.headline }}" data-sentiment="{{ item.sentiment }}">Report</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>No news items found.</p>
+    {% endif %}
+
+    <script>
+        // Get all report buttons
+        const reportButtons = document.querySelectorAll('.report-btn');
+        
+        reportButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const headline = this.getAttribute('data-headline');
+                const sentiment = this.getAttribute('data-sentiment');
+                
+                // Send the data to the server
+                reportIncorrectSentiment(headline, sentiment);
+            });
+        });
+    
+        function reportIncorrectSentiment(headline, sentiment) {
+            // Use fetch API to send data to the server
+            fetch('/report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    headline: headline,
+                    sentiment: sentiment
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // show message to user
+                alert(data.message);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analysis Results
+    </title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analysis Result</h1>
+    
+    <h3> Ticker:{{ ticker }}</h3>
+    <p><strong>Overall Sentiment:</strong> <span class="{{ 'positive' if overall_sentiment == 'Positive' else 'negative' }}">{{ overall_sentiment }}</span> (based on {{ news_data|length }} headlines)</p>
+    <p><strong>Overall Score:</strong> {{ "%.2f" | format(overall_score) }}</p>
+
+    <a href="/" class="btn btn-primary">Select another ticker</a>
+    
+    <h3>Headline Sentiments:</h3>
+    <!-- <h5><i>Ranked By Score</i></h5> -->
+    <table>
+        <tr>
+            <th>Headline</th>
+            <th>Sentiment</th>
+            <th>Score</th>
+            <th>Read Article</th> 
+            <th>Report Incorrect Sentiment</th> 
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.headline }}</td> 
+            <td class="{{ 'positive' if result.sentiment == 'Positive' else 'negative' }}">
+                {{ result.sentiment }}
+            </td>
+            <td>{{ "%.2f" | format(result.score) }}</td>
+            <td><a href="{{ result.url }}" target="_blank">Link</a></td>
+            <td>
+                <!-- Report button. The data attributes store the headline and sentiment for use in JS -->
+                <button class="report-btn" data-headline="{{ result.headline }}" data-sentiment="{{ result.sentiment }}">Report</button>
+            </td>
+        </tr>
+        {% endfor %}
+        
+    </table>
+
+    <script>
+        // Get all report buttons
+        const reportButtons = document.querySelectorAll('.report-btn');
+        
+        reportButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const headline = this.getAttribute('data-headline');
+                const sentiment = this.getAttribute('data-sentiment');
+                
+                // Send the data to the server
+                reportIncorrectSentiment(headline, sentiment);
+            });
+        });
+    
+        function reportIncorrectSentiment(headline, sentiment) {
+            // Use fetch API to send data to server
+            fetch('/report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    headline: headline,
+                    sentiment: sentiment
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // show message to user
+                alert(data.message);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+
+
+</body>
+</html>

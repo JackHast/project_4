@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Financial Sentiment Analysis</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+    <h2>Financial Sentiment Analysis Tool</h2>
+    <form action="/analysis" method="post">
+        <div class="form-group">
+            <label for="ticker">Ticker Code:</label> 
+            <input type="text" id="ticker" name="ticker" placeholder="eg. 'AAPL'">
+        </div>
+    
+        <div class="form-group">
+            <label for="from_date">From Date:</label>
+            <input type="date" id="from_date" name="from_date">
+        </div>
+    
+        <div class="form-group">
+            <label for="to_date">To Date:</label>
+            <input type="date" id="to_date" name="to_date">
+        </div>
+    
+        <input type="submit" class="submit-btn" value="Get Sentiment">
+    </form>
+    
+    <br><br>
+    
+    <hr class="divider">
+<!-- Market News Section -->
+<h3>Market News</h3>
+<form action="/market_news" method="post">
+    <div class="input-group">
+        <label for="category">Select Category:</label>
+        <select name="category" id="category">
+            <option value="general">General</option>
+            <option value="forex">Forex</option>
+            <option value="crypto">Crypto</option>
+            <option value="merger">Merger</option>
+        </select>
+    </div><br>
+    
+    <input type="submit" value="Analyse News">
+</form>
+</body>
+</html>

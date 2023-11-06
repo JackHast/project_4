@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+
+* {
+    /* font-family: 'IBM Plex Mono', monospace; */
+    font-family: 'Share Tech Mono', monospace;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+h1 {
+    text-align: center;
+    font-size: 32px; 
+    color: black;
+    opacity: 0.7;
+}
+
+h2 {
+    font-size: 28px; 
+    color: black;
+    opacity: 0.9;
+}
+
+h3 {
+    font-size: 24px; 
+    color: black;
+    opacity: 0.75;
+}
+
+label {
+    font-size: 12px; 
+    color: #666; 
+    width: 120px;  
+    display: inline-block;
+}
+
+select {
+    font-size: 10px; 
+    padding: 5px; 
+    color: #000; 
+    border: 1px solid #ccc;
+    width: 140px;
+    box-sizing: border-box;
+    margin-left: 0px; /* update this to shift 'Select Category' dropdown box left or right */
+    padding-left: 2px; /* shift "general" text inside the above dropdown */
+}
+
+select option {
+    font-size: 10px;
+    padding: 5px;
+    color: #000;
+}
+
+/* Styling for input elements of type "text" */
+input[type="text"] {
+    font-size: 10px; 
+    padding: 5px; 
+    color: #000; 
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 140px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+/* Styling for input elements of type "date" */
+input[type="date"] {
+    font-size: 10px; 
+    padding: 5px; 
+    color: #000; 
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 140px;
+    box-sizing: border-box;
+    margin-left: 5px;
+    padding-left: 5px;
+}
+
+input[type="submit"] {
+    font-size: 12px; 
+    padding: 6px 8px; 
+    background-color: #367ff3; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    width: 120px;
+    margin-left: -5px;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #044080; 
+}
+
+table {
+    font-size: 0.9em; 
+    background-color: white;
+}
+
+tr {
+    background-color: white;
+}
+
+th {
+    font-size: 12px; 
+    color: black; 
+    background-color:white;
+}
+
+td {
+    background-color: white;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px; /* change gaps between front page form boxes
+}
+
+/* Ensuring that all labels and their respective inputs/selects are on the same line */
+form label, 
+form select,
+form input {
+    display: inline-block;
+    vertical-align: middle;
+}
+.input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.input-group label {
+    width: 200px; 
+}
+
+.input-group select {
+    width: 65%; 
+}
+
+
+#category {
+    text-align-last: center; 
+    margin-right: 8px;
+
+}
+
+form[action="/market_news"] input[type="submit"] {
+    margin-left: 0;  
+}
+}
+.input-group label {
+    width: 120px; 
+}
+/* Standard button styling */
+.btn, input[type="submit"], .btn-primary {
+    font-size: 12px; 
+    padding: 6px 8px; 
+    background-color: #367ff3; 
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 8px; 
+    width: 120px;
+    margin-left: -5px;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.btn:hover, input[type="submit"]:hover, .btn-primary:hover {
+    background-color: #044080; 
+}
