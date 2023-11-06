@@ -29,7 +29,7 @@ In the notebook Pre-processing.ipynb, these 7 data sets were combined and cleane
 
 ### EDA
 
-The file combined.csv, located in cleaned_data, contains headlines labelled as 0 (negative), 1 (neutral) and 2 (positive), however, it was determind that the neutral headlines would not be used since combined.csv is the combination of 7 separate data sets where the definition of neutral varies between data set. Please refer to `eda.ipynb` for a greater explanation of why we made this choose. 
+The file combined.csv, located in cleaned_data, contains headlines labelled as 0 (negative), 1 (neutral) and 2 (positive), however, it was determind that the neutral headlines would not be used since combined.csv is the combination of 7 separate data sets where the definition of neutral varies between data set. Please refer to `eda.ipynb` for a greater explanation of why we made this choice. 
 
 ## The Neural Network
 
