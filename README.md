@@ -32,6 +32,72 @@ In the notebook Pre-processing.ipynb, these 7 data sets were combined and cleane
 
 ## The Webpage
 
+### Overview
+
+Our Financial News Sentiment Analysis webpage serves as an interactive platform for users to evaluate the sentiment of financial news headlines. Leveraging a machine learning model, it analyses and interprets the sentiment of financial news related to specific ticker codes, companies, or markets within a user-defined date range. The webpage is developed using:
+
+- `Flask`
+- `HTML`
+- `CSS`
+- `Python`
+- `JavaScript`
+
+### Features
+
+The webpage offers the following key functionalities:
+
+1. `Ticker Sentiment Analysis`: Users can search for financial news headlines related to a specific ticker/company code and receive a sentiment analysis for the chosen date range. It includes an aggregated sentiment across all returned headlines for the chosen date period, as well as individual sentiment for each news article. 
+
+2. `General News Sentiment`: The platform allows users to query financial news categories such as "General," "Forex," "Crypto," and "Merger" and receive sentiment analysis for each headline.
+
+3. `Report & Improve`: A "Report" feature enables users to flag incorrect sentiments, storing the correct headline and sentiment in a SQLite database for future model refinement.
+
+![Financial Sentiment Analysis Tool Screenshot](https://github.com/JackHast/project_4/blob/main/webpage_screenshot.png)
+
+---
+
 ## Instructions on Running the Webpage
+
+#### Prerequisites
+
+Ensure you have the following before running the webpage on your local machine:
+
+- Python (version 3.10.11 was used for this project).
+- Create your own free API key from [Finnhub](https://finnhub.io/) to fetch financial news.
+
+#### Installation Steps
+
+1. Clone the repository to your local machine:
+
+```
+git clone https://github.com/JackHast/project_4.git
+```
+
+2. Navigate to the project directory:
+
+```
+cd project_4
+```
+
+3. Install the required Python dependencies.
+```
+pip install -r requirements.txt
+```
+
+#### Configuration
+
+1. Rename config.example.json to config.json.
+1. Replace `"enter_your_api_key_here"` with your own Finnhub API key.
+
+### Running the Webpage Locally
+
+To start the webpage on your local environment, follow these steps:
+
+1. Activate your virtual environment if using one.
+2. Run `python app.py`. 
+3. Access the application via a web browser at `http://127.0.0.1:5000/` or `http://localhost:5000/`.
+4. Use the web interface to perform sentiment analysis by entering a ticker code and selecting a date range.
+
+---
 
 ## Acknowledgements 
