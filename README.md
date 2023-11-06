@@ -52,6 +52,8 @@ The webpage offers the following key functionalities:
 
 3. `Report & Improve`: A "Report" feature enables users to flag incorrect sentiments, storing the correct headline and sentiment in a SQLite database for future model refinement.
 
+*screenshot of the tool's homepage* 
+
 ![Financial Sentiment Analysis Tool Screenshot](https://github.com/JackHast/project_4/blob/main/webpage_screenshot.png)
 
 ---
