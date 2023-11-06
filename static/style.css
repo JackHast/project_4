@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: rgb(255, 252, 241);
+    background-color: whitesmoke;
 }
 
 h1 {
@@ -110,7 +110,7 @@ tr {
 th {
     font-size: 12px; 
     color: black; 
-    background-color:rgb(236, 235, 235);
+    background-color:white;
 }
 
 td {

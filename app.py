@@ -10,7 +10,7 @@ from tensorflow.keras.preprocessing.text import tokenizer_from_json
 from db_app import Correction, Session
 
 # Load the pre-trained sentiment analysis model
-model = load_model('positive_negative_model.h5') 
+model = load_model('saved_model.h5') 
 
 # Load the same tokenizer used for preprocessing text data / tokenizer will convert words to integers based on a frequency rank
 with open('tokenizer.json') as f:
