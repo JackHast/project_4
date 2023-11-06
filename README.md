@@ -1,11 +1,30 @@
 # Financial Sentiment Analysis 
 
-#### Created by Andrew McLaughlin and Jack Hastings
+#### *Created by Andrew McLaughlin and Jack Hastings*
 
 ## Introduction 
-
+Our project is a sentiment analysis tool for financial news headlines. 
+ - Multiple datasets were combined to train a neural network ML model.
+ - New financial news headlines are then retrieved by calling the Finnhub API using user inputs. 
+ - This new data is pre-processed and then analysed by the model.
+ - Users can explore the analysis and then input a range of ticker symbols and dates to explore the tool further.
 
 ## Contents of Repository
+ - `README.md`: Overview of the project, setup instructions, and usage.
+
+ - `requirements.txt`: A text file listing the dependencies required to run this project.
+ - `app.py`: The Flask application script that runs the web server and handles all routing for the website.
+ 
+  - `static/`: This directory contains the style.css file 
+
+- `templates/`: This directory contains the HTML templates that are rendered by Flask.
+  - `index.html`: The homepage template that displays the user interface for input.
+  - `result.html`: The template for displaying sentiment analysis results after a user query.
+  - `market_news.html`: The template for showing general market news sentiment results.
+  - `no_data.html`: The template displayed when no data is available for the user's query.
+
+- `.gitignore`: A text file specifying intentionally untracked files that Git should ignore.
+
 
 ## Cleaning and EDA
 
@@ -57,7 +76,7 @@ The webpage offers the following key functionalities:
 
 *screenshot of the tool's homepage* 
 
-![Financial Sentiment Analysis Tool Screenshot](https://github.com/JackHast/project_4/blob/main/webpage_screenshot.png)
+![Financial Sentiment Analysis Tool Screenshot](https://github.com/JackHast/project_4/blob/main/images/webpage_screenshot.png)
 
 ---
 
