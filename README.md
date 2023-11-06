@@ -32,8 +32,6 @@ In the notebook Pre-processing.ipynb, these 7 data sets were combined and cleane
 
 ## The Webpage
 
-### Overview
-
 Our Financial News Sentiment Analysis webpage serves as an interactive platform for users to evaluate the sentiment of financial news headlines. Leveraging a machine learning model, it analyses and interprets the sentiment of financial news related to specific ticker codes, companies, or markets within a user-defined date range. The webpage is developed using:
 
 - `Flask`
