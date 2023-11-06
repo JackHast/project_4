@@ -33,6 +33,8 @@ The file combined.csv, located in cleaned_data, contains headlines labelled as 0
 
 ## The Neural Network
 
+The neutral network used for webpage, located in first_nn.ipynb and created using google colab, 
+
 ## The Webpage
 
 Our Financial News Sentiment Analysis webpage serves as an interactive platform for users to evaluate the sentiment of financial news headlines. Leveraging a machine learning model, it analyses and interprets the sentiment of financial news related to specific ticker codes, companies, or markets within a user-defined date range. The webpage is developed using:
