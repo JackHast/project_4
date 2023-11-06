@@ -22,7 +22,7 @@ Our project is a sentiment analysis tool for financial news headlines.
   - `result.html`: The template for displaying sentiment analysis results after a user query.
   - `market_news.html`: The template for showing general market news sentiment results.
   - `no_data.html`: The template displayed when no data is available for the user's query.
-
+- `images`: Folder containing images for the README 
 - `.gitignore`: A text file specifying intentionally untracked files that Git should ignore.
 
 
