@@ -60,7 +60,7 @@ It was determined that there are fewer than 60 words in each headline in both th
 
 <p align="center"><img src="images/NN_5.png" /></p> 
 
-The output of the embedding layer is then fed into the GlobalAveragePooling1D() layer which simply averages the arrays/vectors to produce a single 16 dimensional vector which is then fed into a hidden layer consisting of 15 neurons. Since we are doing binary classication on the headlines, the output layer consists of a single neuron with a sigmoid activation function. 
+The output of the embedding layer is then fed into the GlobalAveragePooling1D() layer which simply averages the arrays/vectors to produce a single 16 dimensional vector which is then fed into a hidden layer consisting of 15 neurons. Since we are doing binary classication on the headlines, the output layer consists of a single neuron with a sigmoid activation function. The structure of the NN was decided through trial and error, other models as LSTMs and GRUs were considered and implemented however did not improve performance. 
 
 ## The Webpage
 
