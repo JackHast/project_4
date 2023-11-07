@@ -54,7 +54,8 @@ The file combined.csv, located in cleaned_data, contains headlines labelled as 0
 
 The neutral network used for the webpage, located in first_nn.ipynb, is a binary classification model that attempts to classify headlines as either negative (output between 0 and 0.5) and positive (output between 0.5 and 1). It utilises tensorflow's inbuilt tokenizer and embedding layer along with GlobalAveragePooling1D(). Tokenizing is simply the mapping of words in each headline to a unique integer, for example, the sentence "asx crashes and burns" is mapped to, [9532,2750,7,14463]. It is also necessary that each list of tokenized words is of the same length when fed into the embedding layer, therefore, each list is padded with zeros giving each array a length of 60,
 
-![NN_4](https://github.com/JackHast/project_4/assets/131254350/baa43c2e-a0b3-4a49-af63-e8bf66781b93)
+ #+html: <p align="center"><img src="images/NN_4.png" /></p> 
+
 
 
 . It was determined that there are fewer than 60 words in each headline in both the training and testing sets and that generally speaking headlines fall well short of a word count of 60
