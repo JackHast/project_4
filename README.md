@@ -56,9 +56,7 @@ The neutral network used for the webpage, located in first_nn.ipynb, is a binary
 
 <p align="center"><img src="images/NN_4.png" /></p> 
 
-
-
-. It was determined that there are fewer than 60 words in each headline in both the training and testing sets and that generally speaking headlines fall well short of a word count of 60
+It was determined that there are fewer than 60 words in each headline in both the training and testing sets and that generally speaking headlines fall well short of a word count of 60
 
 
 ## The Webpage
