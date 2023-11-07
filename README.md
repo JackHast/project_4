@@ -48,7 +48,7 @@ In the notebook Pre-processing.ipynb, these 7 data sets were combined and cleane
 
 ### EDA
 
-The file combined.csv, located in cleaned_data, contains headlines labelled as 0 (negative), 1 (neutral) and 2 (positive), however, it was determind that the neutral headlines would not be used since combined.csv is the combination of 7 separate data sets where the definition of neutral varies between data set. Please refer to `eda.ipynb` for a greater explanation of why we made this choice. 
+The file combined.csv, located in cleaned_data, contains headlines labelled as 0 (negative), 1 (neutral) and 2 (positive), however, it was determind that the neutral headlines would not be used since combined.csv is the combination of 7 separate data sets where the definition of neutral varies between data set. Please refer to `eda.ipynb` for a greater explanation of why we made this choice. Another problem we ran into was a massive class imbalance between the number of positive and negative headlines. This was dealt with by using undersampling in `Neural_Network.ipynb`. 
 
 ## The Neural Network
 
@@ -60,7 +60,7 @@ It was determined that there are fewer than 60 words in each headline in both th
 
 <p align="center"><img src="images/NN_5.png" /></p> 
 
-The output of the embedding layer is then fed into the GlobalAveragePooling1D() layer which simply averages the arrays/vectors to produce a single 16 dimensional vector which is then fed into a hidden layer consisting of 15 neurons. Since we are doing 
+The output of the embedding layer is then fed into the GlobalAveragePooling1D() layer which simply averages the arrays/vectors to produce a single 16 dimensional vector which is then fed into a hidden layer consisting of 15 neurons. Since we are doing binary classication on the headlines, the output layer consists of a single neuron with a sigmoid activation function. 
 
 ## The Webpage
 
