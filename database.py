@@ -17,7 +17,7 @@ class Correction(Base):
     correct_sentiment = Column("correct_sentiment",String)
 
     # used to instanciate the class
-    def __init__(self,sentence,output_sentiment,correct_sentiment):
+    def __init__(self,sentence,correct_sentiment):
         self.sentence = sentence
         self.correct_sentiment = correct_sentiment
 
@@ -31,12 +31,6 @@ Base.metadata.create_all(bind=engine)
 
 Session = sessionmaker(bind=engine)
 session = Session()
-
-# This is an example of creating an instance of the Correction class and adding to the database
-
-correction = Correction('wallstreet implodes',1,0)
-session.add(correction)
-session.commit()
 
 # closing session
 

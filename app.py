@@ -7,7 +7,7 @@ from flask import Flask, render_template, request, jsonify
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.preprocessing.text import tokenizer_from_json
-from db_app import Correction, Session
+from database import Correction, Session
 
 # Load the pre-trained sentiment analysis model
 model = load_model('saved_model.h5') 
