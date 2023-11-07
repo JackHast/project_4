@@ -24,16 +24,22 @@ Our project is a sentiment analysis tool for financial news headlines.
   - `no_data.html`: The template displayed when no data is available for the user's query.
 - `images`: Folder containing images for the README 
 - `.gitignore`: A text file specifying intentionally untracked files that Git should ignore.
-- `Resources`: This folder contains the
-- `cleaned_data`: This directory contains the file combined.csv which contains the data used to train and validate the NN
-- `guardian_negative`: Contains code and data involved in creating combined.csv (please refer to the section below on cleaning on more information about this folder).
-- `original_data`: contains all original data sets used to created combined.csv
-- `Neural_Network`: Jupyter notebook that contains code used to train, validate and save the neutral network along with the creation of tokenizer.json used in app.py
-- `Pre-processing`: Jupyter notebook that contains code used to clean the data sets from the directory original_data
-- `database.py`: Code to create the sqlite database contain in the Resources directory
-- `eda.ipynb`: Jupyter notebook that contains code used to perform basic exploratory data analysis on combined.csv
-- `saved_model.h5`: The model that was saved in Neural_Network.ipynb and used in app.py
-- `tokenizer.json`: Json file containing word_index dictionary used in app.py for prediction in conjunction with saved_model.h5
+- `Resources/`: This folder contains the sqlite database
+  - `correction.db`: This is an sqlite database that stores corrected reports made on the webpage. 
+- `cleaned_data/`: This directory contains the file combined.csv.
+  - `combined.csv`: Dataset used in Neural_Network.ipynb to train and validate the model.
+- `guardian_negative/`: Contains code and data involved in creating combined.csv.
+  - `guardian_headlines.csv`: Dataset containing financial news headlines published by the guardian.
+  - `guardian_negative.ipynb`: This Jupyter notebook uses words.xlsx to create negative_guardian.csv.
+  - `negative_guardian.csv`: Dataset containing potential negative headlines.
+  - `words.xlsx`: Excel file containing a list of positive and negative words.
+- `original_data`: Contains all original data sets used to created combined.csv (refer to section on cleaning for links and further info).
+- `Neural_Network.ipynb`: Jupyter notebook that contains code used to create the NN (saved_model.h5) and the tokenizer (tokenizer.json).
+- `Pre-processing`: Jupyter notebook that contains code used to clean the data sets from the directory original_data.
+- `database.py`: Code to create the sqlite database contain in the Resources directory.
+- `eda.ipynb`: Jupyter notebook that contains code used to perform basic exploratory data analysis on combined.csv.
+- `saved_model.h5`: The model that was saved in Neural_Network.ipynb and used in app.py.
+- `tokenizer.json`: Json file containing word_index dictionary used in app.py for prediction in conjunction with saved_model.h5.
 
 
 ## Cleaning and EDA
