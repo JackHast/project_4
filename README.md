@@ -78,6 +78,8 @@ It was determined that there are fewer than 60 words in each headline in both th
 
 The output of the embedding layer is then fed into the GlobalAveragePooling1D() layer which simply averages the arrays/vectors to produce a single 16 dimensional vector which is then fed into a hidden layer consisting of 15 neurons. Since we are doing binary classication on the headlines, the output layer consists of a single neuron with a sigmoid activation function. The structure of the NN was decided through trial and error, other models as LSTMs and GRUs were considered and implemented however did not improve performance. 
 
+The final validation accuracy achieved was approximately 87%, however, the model still has serious defects. In particular, the probably the biggest flaw is that fact that it only classifies articles as either positive or negative and not also neutral. This means that many articles that contain no sentiment 
+
 ## The Webpage
 
 Our Financial News Sentiment Analysis webpage serves as an interactive platform for users to evaluate the sentiment of financial news headlines. Leveraging a machine learning model, it analyses and interprets the sentiment of financial news related to specific ticker codes, companies, or markets within a user-defined date range. The webpage is developed using:
