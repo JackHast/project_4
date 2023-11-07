@@ -24,6 +24,8 @@ Our project is a sentiment analysis tool for financial news headlines.
   - `no_data.html`: The template displayed when no data is available for the user's query.
 - `images`: Folder containing images for the README 
 - `.gitignore`: A text file specifying intentionally untracked files that Git should ignore.
+- `Resources`: This folder contains the
+- `cleaned_data`: 
 
 
 ## Cleaning and EDA
