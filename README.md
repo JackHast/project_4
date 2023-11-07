@@ -25,7 +25,15 @@ Our project is a sentiment analysis tool for financial news headlines.
 - `images`: Folder containing images for the README 
 - `.gitignore`: A text file specifying intentionally untracked files that Git should ignore.
 - `Resources`: This folder contains the
-- `cleaned_data`: 
+- `cleaned_data`: This directory contains the file combined.csv which contains the data used to train and validate the NN
+- `guardian_negative`: Contains code and data involved in creating combined.csv (please refer to the section below on cleaning on more information about this folder).
+- `original_data`: contains all original data sets used to created combined.csv
+- `Neural_Network`: Jupyter notebook that contains code used to train, validate and save the neutral network along with the creation of tokenizer.json used in app.py
+- `Pre-processing`: Jupyter notebook that contains code used to clean the data sets from the directory original_data
+- `database.py`: Code to create the sqlite database contain in the Resources directory
+- `eda.ipynb`: Jupyter notebook that contains code used to perform basic exploratory data analysis on combined.csv
+- `saved_model.h5`: The model that was saved in Neural_Network.ipynb and used in app.py
+- `tokenizer.json`: Json file containing word_index dictionary used in app.py for prediction in conjunction with saved_model.h5
 
 
 ## Cleaning and EDA
@@ -46,7 +54,7 @@ The original data set containing guardian_headlines.csv can be found [here](http
 
 The excel file words.xlsx, which contains a list of negative and positive words can be found [here](https://www.cs.uic.edu/~liub/FBS/sentiment-analysis.html).
 
-In the notebook Pre-processing.ipynb, these 7 data sets were combined and cleaned. Cleaning involved removal of URLs, removal of irrelevant strings such as “UPDATE –” and “Politics live with Andrew Sparrow” along with non-alphanumeric characters such as commas, apostrophes etc. The reason we removed non-alphanumeric characters was that the tokenizer (spoken about in the next section in more depth) used to create the neural network would treat two strings for example ‘meltdown’ and meltdown as two different tokens because of the apostrophes, however, we wanted all occurrences of the same word to seen as the same by the NN. We also removed strings such as “US” and “UK” since they occurred frequently, and it was a possibility that the NN would associate them more heavily with either negative or positive sentiments depending on the training data, i.e., if there were particular strings such as the ones mentioned above that occurred more in negative headlines then upon seeing them the NN would be biased towards negative, especially if the NN was not familiar with the other words in the input string. 
+In the notebook Pre-processing.ipynb, these 7 data sets were combined and cleaned. Cleaning involved removal of URLs, removal of irrelevant strings such as “UPDATE –” and “Politics live with Andrew Sparrow” along with non-alphanumeric characters such as commas, apostrophes etc. The reason we removed non-alphanumeric characters was that the tokenizer (spoken about in the next section in more depth) used to create the neural network would treat two strings for example ‘meltdown’ and meltdown as two different tokens because of the apostrophes, however, we wanted all occurrences of the same word to seen as the same word by the NN. We also removed strings such as “US” and “UK” since they occurred frequently, and it was a possibility that the NN would associate them more heavily with either negative or positive sentiments depending on the training data, i.e., if there were particular strings such as the ones mentioned above that occurred more in negative headlines, then the NN would be biased towards classifying them as negative, especially if the NN was not familiar with the other words in the input string. 
 
 ### EDA
 
