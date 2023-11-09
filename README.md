@@ -149,5 +149,3 @@ To start the webpage on your local environment, follow these steps:
 4. Use the web interface to perform sentiment analysis by entering a ticker code and selecting a date range.
 
 ---
-
-## Acknowledgements 
